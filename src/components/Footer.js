@@ -1,50 +1,71 @@
 import React from 'react';
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from 'react-icons/fa';
+import PropTypes from 'prop-types';
 import './Footer.css';
 
-const Footer = () => {
+const Footer = ({ sections, copyrightText, logo }) => {
   return (
     <footer className="footer">
-      <div className="footer-content">
-        <div className="footer-section">
-          <h3>About Us</h3>
-          <p>Your awesome MERN stack application for the hackathon.</p>
-        </div>
-        
-        <div className="footer-section">
-          <h3>Quick Links</h3>
-          <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/features">Features</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/contact">Contact</a></li>
-          </ul>
-        </div>
-        
-        <div className="footer-section">
-          <h3>Connect With Us</h3>
-          <div className="social-icons">
-            <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">
-              <FaGithub />
-            </a>
-            <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">
-              <FaLinkedin />
-            </a>
-            <a href="https://twitter.com/yourhandle" target="_blank" rel="noopener noreferrer">
-              <FaTwitter />
-            </a>
-            <a href="mailto:youremail@example.com">
-              <FaEnvelope />
-            </a>
+      <div className="footer-container">
+        {logo && (
+          <div className="footer-logo">
+            <img src={logo.src} alt={logo.alt} />
           </div>
+        )}
+        
+        <div className="footer-sections">
+          {sections.map((section, index) => (
+            <div key={index} className="footer-section">
+              <h3 className="footer-section-title">{section.title}</h3>
+              {section.links ? (
+                <ul className="footer-links">
+                  {section.links.map((link, linkIndex) => (
+                    <li key={linkIndex}>
+                      <a href={link.url} target={link.external ? "_blank" : "_self"} rel="noopener noreferrer">
+                        {link.icon && <span className="footer-icon">{link.icon}</span>}
+                        {link.text}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="footer-content">{section.content}</p>
+              )}
+            </div>
+          ))}
         </div>
-      </div>
-      
-      <div className="footer-bottom">
-        &copy; {new Date().getFullYear()} Your App Name. All rights reserved.
+        
+        <div className="footer-bottom">
+          <p>{copyrightText}</p>
+        </div>
       </div>
     </footer>
   );
+};
+
+Footer.propTypes = {
+  sections: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      links: PropTypes.arrayOf(
+        PropTypes.shape({
+          text: PropTypes.string.isRequired,
+          url: PropTypes.string.isRequired,
+          external: PropTypes.bool,
+          icon: PropTypes.node,
+        })
+      ),
+      content: PropTypes.string,
+    })
+  ).isRequired,
+  copyrightText: PropTypes.string.isRequired,
+  logo: PropTypes.shape({
+    src: PropTypes.string.isRequired,
+    alt: PropTypes.string.isRequired,
+  }),
+};
+
+Footer.defaultProps = {
+  copyrightText: `© ${new Date().getFullYear()} My App. All rights reserved.`,
 };
 
 export default Footer;

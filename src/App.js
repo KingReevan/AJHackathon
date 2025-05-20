@@ -5,6 +5,7 @@ import Button from "./components/Button";
 import Navbar from "./components/Navbar";
 import Card from "./components/Card"; // Import the Card component
 import Footer from './components/Footer';
+import { footerConfig } from './config/footerConfig';
 
 function App() {
   const [backendStatus, setBackendStatus] = useState("Checking backend...");
@@ -67,7 +68,7 @@ function App() {
   }
 
   return (
-    <>
+    <div className="app-container">
       <Navbar />
       <div className="status-container">
         <h1>Backend Status</h1>
@@ -104,8 +105,9 @@ function App() {
             />
           ))}
         </div>
-        <Footer />
-    </>
+        
+        <Footer {...footerConfig} />
+    </div>
   );
 }
 

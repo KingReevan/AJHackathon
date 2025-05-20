@@ -1,3 +1,23 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+/* Add this to ensure content pushes footer down */
+main {
+  flex: 1;
+}
+
 .status-container {
   max-width: 600px;
   margin: 2rem auto;
