@@ -1,12 +1,18 @@
 import { useEffect, useState } from 'react';
 import axios from "axios";
 import './App.css'; // Optional for styling
+import Button from "./components/Button";
 
 function App() {
   const [backendStatus, setBackendStatus] = useState("Checking backend...");
   const [dbStatus, setDbStatus] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [message, setMessage] = useState("");
+
+  const handleClick = () => {
+    setMessage("Button was clicked!");
+  };
 
   useEffect(() => {
     const checkBackend = async () => {
@@ -51,7 +57,17 @@ function App() {
           </p>
         </>
       )}
+        <div style={{ textAlign: "center", marginTop: "50px" }}>
+          <h1>My React App</h1>
+          <Button onClick={handleClick}>Click Me</Button>
+          <p>{message}</p>
+        </div>
     </div>
+    
+
+    
+
+    
   );
 }
 
