@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import axios from "axios";
-import './App.css'; // Optional for styling
+import './App.css';
 import Button from "./components/Button";
+import Navbar from "./components/Navbar";
+import Card from "./components/Card"; // Import the Card component
+import Footer from './components/Footer';
 
 function App() {
   const [backendStatus, setBackendStatus] = useState("Checking backend...");
@@ -34,40 +37,75 @@ function App() {
     checkBackend();
   }, []);
 
+  // Sample card data (can be fetched from an API later)
+  const cards = [
+    {
+      imageUrl: "https://i.pinimg.com/736x/c0/76/aa/c076aa6d563f1499ed2793e6078a156a.jpg",
+      title: "Awesome Product",
+      description: "This is a great product with amazing features."
+    },
+    {
+      imageUrl: "https://wallpapers.com/images/hd/cool-rainbow-neon-streaks-vnjacac3u0ugxi89.jpg",
+      title: "Premium Service",
+      description: "Get the best service in town with our premium package."
+    },
+    {
+      imageUrl: "https://t3.ftcdn.net/jpg/01/05/16/08/360_F_105160882_L6I6OnRkT0NZjqtnEX4oqC5BcI3j6ZuH.jpg",
+      title: "Limited Edition",
+      description: "Hurry! Limited stock available for this exclusive item."
+    },
+    {
+      imageUrl: "https://m.media-amazon.com/images/I/815YTONG3jL._AC_UF1000,1000_QL80_.jpg",
+      title: "Alston Endorsed",
+      description: "Famous celebrities like Joywin and Alston endorse this product."
+    },
+    
+  ];
+
   if (isLoading) {
     return <div className="status-loading">Loading backend status...</div>;
   }
 
   return (
-    <div className="status-container">
-      <h1>Backend Status</h1>
-      {error ? (
-        <div className="status-error">
-          <p>❌ Error: {error}</p>
-          <p>Make sure your backend server is running on port 5000</p>
-        </div>
-      ) : (
-        <>
-          <div className={`status-indicator ${error ? 'error' : 'success'}`}>
-            <p>Backend: {backendStatus}</p>
-            <p>Database: {dbStatus}</p>
+    <>
+      <Navbar />
+      <div className="status-container">
+        <h1>Backend Status</h1>
+        {error ? (
+          <div className="status-error">
+            <p>❌ Error: {error}</p>
+            <p>Make sure your backend server is running on port 5000</p>
           </div>
-          <p className="status-tip">
-            {!error && "✅ Frontend is successfully communicating with backend"}
-          </p>
-        </>
-      )}
+        ) : (
+          <>
+            <div className={`status-indicator ${error ? 'error' : 'success'}`}>
+              <p>Backend: {backendStatus}</p>
+              <p>Database: {dbStatus}</p>
+            </div>
+            <p className="status-tip">
+              {!error && "✅ Frontend is successfully communicating with backend"}
+            </p>
+          </>
+        )}
         <div style={{ textAlign: "center", marginTop: "50px" }}>
           <h1>My React App</h1>
           <Button onClick={handleClick}>Click Me</Button>
           <p>{message}</p>
         </div>
-    </div>
-    
-
-    
-
-    
+      </div>
+      {/* Card Grid Section */}
+        <div className="card-grid">
+          {cards.map((card, index) => (
+            <Card
+              key={index}
+              imageUrl={card.imageUrl}
+              title={card.title}
+              description={card.description}
+            />
+          ))}
+        </div>
+        <Footer />
+    </>
   );
 }
 
