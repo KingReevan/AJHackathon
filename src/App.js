@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import axios from "axios";
 import './App.css';
 import Button from "./components/Button";
@@ -6,6 +7,9 @@ import Navbar from "./components/Navbar";
 import Card from "./components/Card"; // Import the Card component
 import Footer from './components/Footer';
 import { footerConfig } from './config/footerConfig';
+import Home from './pages/Home';
+import Shop from './pages/Shop';
+import Cart from './pages/Cart';
 
 function App() {
   const [backendStatus, setBackendStatus] = useState("Checking backend...");
@@ -38,6 +42,10 @@ function App() {
     checkBackend();
   }, []);
 
+  if (isLoading) {
+    return <div className="status-loading">Loading backend status...</div>;
+  }
+
   // Sample card data (can be fetched from an API later)
   const cards = [
     {
@@ -68,46 +76,55 @@ function App() {
   }
 
   return (
-    <div className="app-container">
-      <Navbar />
-      <div className="status-container">
-        <h1>Backend Status</h1>
-        {error ? (
-          <div className="status-error">
-            <p>❌ Error: {error}</p>
-            <p>Make sure your backend server is running on port 5000</p>
-          </div>
-        ) : (
-          <>
-            <div className={`status-indicator ${error ? 'error' : 'success'}`}>
-              <p>Backend: {backendStatus}</p>
-              <p>Database: {dbStatus}</p>
+    <Router>
+      <div className="app-container">
+        <Navbar />
+        
+        <div className="status-container">
+          <h1>Backend Status</h1>
+          {error ? (
+            <div className="status-error">
+              <p>❌ Error: {error}</p>
+              <p>Make sure your backend server is running on port 5000</p>
             </div>
-            <p className="status-tip">
-              {!error && "✅ Frontend is successfully communicating with backend"}
-            </p>
-          </>
-        )}
-        <div style={{ textAlign: "center", marginTop: "50px" }}>
-          <h1>My React App</h1>
-          <Button onClick={handleClick}>Click Me</Button>
-          <p>{message}</p>
+          ) : (
+            <>
+              <div className={`status-indicator ${error ? 'error' : 'success'}`}>
+                <p>Backend: {backendStatus}</p>
+                <p>Database: {dbStatus}</p>
+              </div>
+              <p className="status-tip">
+                {!error && "✅ Frontend is successfully communicating with backend"}
+              </p>
+            </>
+          )}
         </div>
-      </div>
-      {/* Card Grid Section */}
-        <div className="card-grid">
-          {cards.map((card, index) => (
-            <Card
-              key={index}
-              imageUrl={card.imageUrl}
-              title={card.title}
-              description={card.description}
-            />
-          ))}
-        </div>
+
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={
+              <>
+                <Home />
+                <div className="card-grid">
+                  {cards.map((card, index) => (
+                    <Card
+                      key={index}
+                      imageUrl={card.imageUrl}
+                      title={card.title}
+                      description={card.description}
+                    />
+                  ))}
+                </div>
+              </>
+            } />
+            <Route path="/shop" element={<Shop />} />
+            <Route path="/cart" element={<Cart />} />
+          </Routes>
+        </main>
         
         <Footer {...footerConfig} />
-    </div>
+      </div>
+    </Router>
   );
 }
 

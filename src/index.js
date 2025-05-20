@@ -1,21 +1,11 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client'; // Updated import
-import './index.css';
+import ReactDOM from 'react-dom/client';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from 'react-router-dom';
+import './index.css';
 
-// Get the root element
-const container = document.getElementById('root');
-const root = createRoot(container); // Create a root
-
-// Render your app
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <App />
   </React.StrictMode>
 );
-
-reportWebVitals();
