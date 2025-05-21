@@ -11,34 +11,31 @@ const Navbar = () => {
         </NavLink>
         
         <ul className="nav-menu">
-          <li className="nav-item">
-            <NavLink to="/" className="nav-link">
-              Home
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink to="/shop" className="nav-link">
-              Shop
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink to="/cart" className="nav-link">
-              Cart
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink to="/settings" className="nav-link">
-              Settings
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink to="/about" className="nav-link">
-              About
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink to="/contact" className="nav-link">
-              Contact
+          <div className="nav-center-group">
+            <li className="nav-item">
+              <NavLink to="/" className="nav-link">
+                Home
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink to="/destination" className="nav-link">
+                Destination
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink to="/planner" className="nav-link">
+                Planner
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink to="/aboutus" className="nav-link">
+                About Us
+              </NavLink>
+            </li>
+          </div>
+          <li className="nav-item nav-login">
+            <NavLink to="/login" className="nav-link">
+              Login
             </NavLink>
           </li>
         </ul>

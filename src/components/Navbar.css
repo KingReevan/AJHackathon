@@ -66,3 +66,21 @@
   font-weight: bold;
   border-bottom: 2px solid #3498db;
 }
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  text-align: center;
+  width: 100%;
+}
+
+.nav-center-group {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.nav-login {
+  margin-left: auto;
+}

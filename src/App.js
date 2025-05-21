@@ -8,8 +8,10 @@ import Card from "./components/Card"; // Import the Card component
 import Footer from './components/Footer';
 import { footerConfig } from './config/footerConfig';
 import Home from './pages/Home';
-import Shop from './pages/Shop';
-import Cart from './pages/Cart';
+import Destination from './pages/Destination';
+import Planner from './pages/Planner';
+import AboutUs from './pages/About';
+import Login from './components/Login';
 
 function App() {
   const [backendStatus, setBackendStatus] = useState("Checking backend...");
@@ -117,8 +119,10 @@ function App() {
                 </div>
               </>
             } />
-            <Route path="/shop" element={<Shop />} />
-            <Route path="/cart" element={<Cart />} />
+            <Route path="/destination" element={<Destination />} />
+            <Route path="/planner" element={<Planner />} />
+            <Route path="/aboutus" element={<AboutUs />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         </main>
         
