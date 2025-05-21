@@ -67,22 +67,37 @@ const Login = () => {
   return (
     <Box
       sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        minHeight: '100vh',
-        backgroundColor: '#f8f9fa',
-      }}
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    minHeight: '100vh',
+    backgroundImage: `url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2674&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    // Optional: add a dark overlay for better contrast
+    position: 'relative',
+    '&::before': {
+      content: '""',
+      position: 'absolute',
+      top: 0, left: 0, right: 0, bottom: 0,
+      backgroundColor: 'rgba(0, 0, 0, 0.4)', // dark translucent overlay
+      zIndex: 1,
+    },
+  }}
     >
       <Paper
         elevation={6}
         sx={{
-          padding: 4,
-          width: '100%',
-          maxWidth: 400,
-          borderRadius: 2,
-          boxShadow: 3,
-        }}
+      position: 'relative', // to be above the overlay
+      zIndex: 2,
+      padding: 4,
+      width: '100%',
+      maxWidth: 400,
+      borderRadius: 2,
+      boxShadow: 3,
+      backgroundColor: 'rgba(255, 255, 255, 0.9)', // semi-transparent paper background
+    }}
       >
         <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: 2 }}>
           <Avatar sx={{ backgroundColor: '#ef6812' }}>
