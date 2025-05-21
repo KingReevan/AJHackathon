@@ -78,7 +78,7 @@
 }
 
 .hero-button {
-  background-color: #4b59f7;
+  background-color: #ef6812;
   color: white;
   border: none;
   border-radius: 4px;
@@ -91,7 +91,7 @@
 }
 
 .hero-button:hover {
-  background-color: #3a48d6;
+  background-color: #f07325;
   transform: translateY(-2px);
 }
 

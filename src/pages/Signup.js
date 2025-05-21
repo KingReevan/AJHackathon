@@ -13,6 +13,8 @@ import {
   CircularProgress,
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import axios from 'axios';
+
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -48,17 +50,41 @@ const Signup = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (validateForm()) {
-      setLoading(true);
-      // Simulate an API call
-      setTimeout(() => {
-        setLoading(false);
-        alert('Signup successful!');
-      }, 2000);
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  if (!validateForm()) return;
+
+  setLoading(true);
+  try {
+    const res = await axios.post('http://localhost:5000/api/auth/signup', {
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+      username: formData.email, // 👈 using email as username
+      password: formData.password,
+    });
+
+    // Optionally save the token and user
+    if (res.data.token) {
+      localStorage.setItem('token', res.data.token);
+      localStorage.setItem('user', JSON.stringify(res.data.user));
     }
-  };
+
+    alert('Signup successful!');
+    // Redirect to dashboard or login page
+    window.location.href = '/login';
+  } catch (error) {
+    if (error.response && error.response.data) {
+      const serverError = error.response.data.error;
+      alert(`Signup failed: ${serverError}`);
+    } else {
+      alert('Signup failed: Server error');
+    }
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <Box
@@ -81,7 +107,7 @@ const Signup = () => {
         }}
       >
         <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: 2 }}>
-          <Avatar sx={{ bgcolor: '#1976d2' }}>
+          <Avatar sx={{ bgcolor: '#ef6812' }}>
             <LockOutlinedIcon />
           </Avatar>
         </Box>
@@ -164,7 +190,12 @@ const Signup = () => {
                     checked={formData.agreeToTerms}
                     onChange={handleChange}
                     name="agreeToTerms"
-                    color="primary"
+                    sx={{
+                      color: '#ef6812',
+                      '&.Mui-checked': {
+                        color: '#ef6812',
+                      },
+                    }}
                   />
                 }
                 label="I agree to the terms and conditions"
@@ -178,12 +209,18 @@ const Signup = () => {
             <Grid item xs={12}>
               <Button
                 type="submit"
-                variant="contained"
-                color="primary"
                 fullWidth
+                variant="contained"
                 disabled={loading}
+                sx={{
+                  backgroundColor: '#ef6812',
+                  color: '#fff',
+                  '&:hover': {
+                    backgroundColor: '#d75e0f',
+                  },
+                }}
               >
-                {loading ? <CircularProgress size={24} /> : 'Sign Up'}
+                {loading ? <CircularProgress size={24} color="inherit" /> : 'Sign Up'}
               </Button>
             </Grid>
           </Grid>

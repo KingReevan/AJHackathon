@@ -52,19 +52,19 @@
 }
 
 .nav-link:hover {
-  color: #4b59f7;
+  color: #ef6812;
   transform: translateY(-3px);
 }
 
 .active {
-  border-bottom: 4px solid #4b59f7;
+  border-bottom: 4px solid #ef6812;
 }
 
 /* Active link style */
 .nav-link.active {
-  color: #3498db;
+  color: #ef6812;
   font-weight: bold;
-  border-bottom: 2px solid #3498db;
+  border-bottom: 2px solid #ef6812;
 }
 
 .nav-menu {
@@ -113,21 +113,39 @@
 .login-btn {
   background-color: transparent;
   color: #fff;
-  border: 2px solid #4b59f7;
+  border: 2px solid #ef6812;
+  padding: 6px 14px;
+  font-size: 0.95rem;
 }
 
 .login-btn:hover {
-  background-color: #4b59f7;
+  background-color: #ef6812;
   color: white;
 }
 
 /* Sign Up Button */
 .signup-btn {
-  background-color: #4b59f7;
+  background-color: #ef6812;
   color: white;
+  padding: 6px 14px;
+  font-size: 0.95rem;
 }
 
 .signup-btn:hover {
-  background-color: #3a47c3;
+  background-color: #ef6812;
   transform: translateY(-2px);
 }
+
+/* Sign Up Button */
+.logout-btn {
+  background-color: #ef6812;
+  color: white;
+  padding: 6px 14px;
+  font-size: 0.95rem;
+}
+
+.logout-btn:hover {
+  background-color: #ef6812;
+  transform: translateY(-2px);
+}
+

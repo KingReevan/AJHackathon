@@ -67,16 +67,23 @@ router.post("/signup", async (req, res) => {
   if (!username || !email || !password)
     return res.status(400).json({ error: "Missing required fields" });
 
+  const cleanUsername = username.trim();
+  const cleanEmail = email.trim().toLowerCase();
+  const cleanPassword = password.trim();
+
   try {
-    const existingUser = await User.findOne({ $or: [{ username }, { email }] });
+    const existingUser = await User.findOne({
+      $or: [{ username: cleanUsername }, { email: cleanEmail }]
+    });
+
     if (existingUser)
       return res.status(409).json({ error: "Username or email already exists" });
 
-    const passwordHash = await bcrypt.hash(password, 10);
+    const passwordHash = await bcrypt.hash(cleanPassword, 10);
 
     const newUser = new User({
-      username,
-      email,
+      username: cleanUsername,
+      email: cleanEmail,
       passwordHash,
       firstName,
       lastName,
@@ -85,10 +92,29 @@ router.post("/signup", async (req, res) => {
 
     await newUser.save();
 
-    res.status(201).json({ message: "User registered successfully" });
+    const payload = {
+      id: newUser._id,
+      username: newUser.username,
+      roles: newUser.roles
+    };
+
+    const token = jwt.sign(payload, JWT_SECRET, { expiresIn: "2h" });
+
+    res.status(201).json({
+      message: "User registered successfully",
+      token,
+      user: {
+        id: newUser._id,
+        username: newUser.username,
+        email: newUser.email,
+        roles: newUser.roles
+      }
+    });
   } catch (err) {
+    console.error("Signup error:", err);
     res.status(500).json({ error: "Server error" });
   }
 });
+
 
 module.exports = router;
