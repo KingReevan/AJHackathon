@@ -12,7 +12,7 @@ import Destination from './pages/Destination';
 import Planner from './pages/Planner';
 import AboutUs from './pages/About';
 import Login from './pages/Login';
-import Signup from './pages/Signup';
+import Signup from './pages/Signup';  // import your map component properly
 
 function App() {
   const [backendStatus, setBackendStatus] = useState("Checking backend...");

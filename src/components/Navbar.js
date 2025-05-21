@@ -40,6 +40,7 @@ const Navbar = () => {
                 About Us
               </NavLink>
             </li>
+            
           </div>
 
           <div className="nav-auth-buttons">
