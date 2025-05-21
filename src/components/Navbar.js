@@ -27,7 +27,7 @@ const Navbar = () => {
             </li>
             <li className="nav-item">
               <NavLink to="/destinations" className="nav-link">
-                Destination
+                Destinations
               </NavLink>
             </li>
             <li className="nav-item">
@@ -44,12 +44,20 @@ const Navbar = () => {
           </div>
 
           <div className="nav-auth-buttons">
-            <NavLink to="/login" className="btn login-btn">
-              Login
-            </NavLink>
-            <NavLink to="/signup" className="btn signup-btn">
-              Sign Up
-            </NavLink>
+            {!token ? (
+              <>
+                <NavLink to="/login" className="btn login-btn">
+                  Login
+                </NavLink>
+                <NavLink to="/signup" className="btn signup-btn">
+                  Sign Up
+                </NavLink>
+              </>
+            ) : (
+              <button onClick={handleLogout} className="btn logout-btn">
+                Logout
+              </button>
+            )}
           </div>
         </ul>
       </div>

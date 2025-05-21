@@ -14,10 +14,10 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Get single destination
-router.get('/:id', async (req, res) => {
+// Get single destination by name
+router.get('/:name', async (req, res) => {
   try {
-    const destination = await Destination.findById(req.params.id);
+    const destination = await Destination.findOne({ name: req.params.name }).select('name country description longDescription images culturalHighlights');
     if (!destination) return res.status(404).json({ message: 'Destination not found' });
     res.json(destination);
   } catch (err) {

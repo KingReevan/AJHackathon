@@ -44,22 +44,16 @@ const Login = () => {
 
     try {
       const response = await axios.post('http://localhost:5000/api/auth/login', {
-        username: formData.email.trim(), // assuming you're using username, not email
-        password: formData.password.trim()
+        username: formData.email.trim(),
+        password: formData.password.trim(),
       });
 
       const { token, user } = response.data;
-
-      // Save the token to localStorage or sessionStorage
       localStorage.setItem('token', token);
-
-      // Optional: save user info if needed
       localStorage.setItem('user', JSON.stringify(user));
 
       alert('Login successful!');
-      // Redirect to a protected route (e.g., /dashboard)
       window.location.href = '/planner';
-
     } catch (error) {
       console.error(error);
       const message =
@@ -77,7 +71,7 @@ const Login = () => {
         justifyContent: 'center',
         alignItems: 'center',
         minHeight: '100vh',
-        backgroundColor: '#f0f2f5',
+        backgroundColor: '#f8f9fa',
       }}
     >
       <Paper
@@ -91,7 +85,7 @@ const Login = () => {
         }}
       >
         <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: 2 }}>
-          <Avatar sx={{ backgroundColor: '#1976d2' }}>
+          <Avatar sx={{ backgroundColor: '#ef6812' }}>
             <LockOutlinedIcon />
           </Avatar>
         </Box>
@@ -130,18 +124,29 @@ const Login = () => {
                 name="rememberMe"
                 checked={formData.rememberMe}
                 onChange={handleChange}
-                color="primary"
+                sx={{
+                  color: '#ef6812',
+                  '&.Mui-checked': {
+                    color: '#ef6812',
+                  },
+                }}
               />
             }
             label="Remember me"
           />
           <Button
             type="submit"
-            variant="contained"
-            color="primary"
             fullWidth
-            sx={{ marginTop: 2 }}
+            variant="contained"
             disabled={loading}
+            sx={{
+              backgroundColor: '#ef6812',
+              color: '#fff',
+              marginTop: 2,
+              '&:hover': {
+                backgroundColor: '#d75e0f',
+              },
+            }}
           >
             {loading ? <CircularProgress size={24} color="inherit" /> : 'Sign In'}
           </Button>

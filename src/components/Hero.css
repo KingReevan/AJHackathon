@@ -1,16 +1,22 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
 .hero {
+  height: calc(100vh); /* viewport height minus navbar height */
+  padding: 5rem 2rem;
   position: relative;
   color: white;
-  padding: 5rem 2rem;
   text-align: center;
-  min-height: 60vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100vw; /* Full viewport width */
-  margin-left: calc(-50vw + 50%); /* Counteract any parent padding */
-  overflow: hidden; /* Prevent horizontal scroll */
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  overflow: hidden;
 }
+
 
 /* Background image with overlay */
 .hero::before {
@@ -25,6 +31,7 @@
   background-position: center center;
   background-repeat: no-repeat;
   z-index: -1;
+  overflow-x: hidden;
 }
 
 /* Gradient overlay */
@@ -78,7 +85,7 @@
 }
 
 .hero-button {
-  background-color: #4b59f7;
+  background-color: #ef6812;
   color: white;
   border: none;
   border-radius: 4px;
@@ -91,7 +98,7 @@
 }
 
 .hero-button:hover {
-  background-color: #3a48d6;
+  background-color: #f07325;
   transform: translateY(-2px);
 }
 

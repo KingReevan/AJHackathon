@@ -1,5 +1,5 @@
 .company-logo {
-  width: 100px;
+  width: 200px;
   height: auto;
   margin-bottom: 10px;
   display: block;
@@ -245,62 +245,85 @@
 }
 
 /* FAQ Section */
+/* FAQ Section */
 .faq-section {
-  margin-bottom: 60px;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 100%;
+  margin: 60px auto;
+  padding: 0 40px;
+  box-sizing: border-box;
 }
 
 .faq-section h2 {
-  font-size: 36px;
-  margin-bottom: 30px;
-  color: #005bb5;
+  font-size: 2.4em;
+  margin-bottom: 40px;
+  font-weight: bold;
+  color: #2c3e50;
   text-align: center;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
 }
 
 .faq-item {
-  border-bottom: 1px solid #ddd;
-  padding: 15px 0;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.3s ease;
   cursor: pointer;
   user-select: none;
   outline: none;
 }
 
+.faq-item:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
 .faq-item .faq-question {
+  padding: 20px;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 1.1em;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #222;
+  background: linear-gradient(to right, #f9f9f9, #f1f1f1);
+  user-select: none;
+  border-bottom: 1px solid #eee;
+  transition: background 0.3s;
+  color: #2c3e50;
+}
+
+.faq-item .faq-question:hover {
+  background: linear-gradient(to right, #f1f1f1, #e6e6e6);
 }
 
 .faq-item .faq-question span {
-  font-size: 26px;
+  font-size: 1.3em;
   font-weight: 600;
-  user-select: none;
   transition: transform 0.3s ease;
+  color: #555;
 }
 
 .faq-item.active .faq-question span {
-  transform: rotate(180deg);
+  transform: rotate(45deg);
 }
 
 .faq-answer {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.4s ease, padding 0.3s ease;
-  padding: 0 5px;
-  color: #555;
-  font-size: 16px;
+  padding: 0 20px;
+  background-color: #fff;
+  font-size: 0.97em;
+  color: #444;
   line-height: 1.5;
 }
 
 .faq-item.active .faq-answer {
-  max-height: 300px; /* enough height for answer */
-  padding-top: 10px;
+  max-height: 200px;
+  padding: 15px 20px 20px;
 }
+
 
 /* Call to Action Section */
 .cta-section {
