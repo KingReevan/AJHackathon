@@ -1,0 +1,23 @@
+/* Full page container to center child */
+.page-container {
+  height: 100vh;              /* full viewport height */
+  display: flex;
+  justify-content: center;    /* center horizontally */
+  align-items: center;        /* center vertically */
+  background-color: #f0f0f0;  /* optional background */
+}
+
+/* Map container with fixed size */
+.tracker-container {
+  width: 1200px;               /* fixed width */
+  height: 850px;              /* fixed height */
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  border-radius: 8px;
+  overflow: hidden;           /* keep map clipped to box */
+}
+
+/* Map fills the container */
+.map-container {
+  height: 100%;
+  width: 100%;
+}

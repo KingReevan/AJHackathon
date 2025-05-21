@@ -14,6 +14,7 @@ import AboutUs from './pages/About';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import DestinationPage from './pages/DestinationPage';
+import PriceAlertTracker from './pages/PriceAlertTracker';
 function App() {
   const [backendStatus, setBackendStatus] = useState("Checking backend...");
   const [dbStatus, setDbStatus] = useState("");
@@ -72,6 +73,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/destinations/:name" element={<DestinationPage />} />
+            <Route path="/pricealerttracker" element={<PriceAlertTracker />} />
 
           </Routes>
         </main>
