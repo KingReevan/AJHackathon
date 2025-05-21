@@ -12,13 +12,9 @@ import Destination from './pages/Destination';
 import Planner from './pages/Planner';
 import AboutUs from './pages/About';
 import Login from './pages/Login';
-<<<<<<< HEAD
-import Signup from './pages/Signup';  // import your map component properly
-
-=======
 import Signup from './pages/Signup';
 import DestinationPage from './pages/DestinationPage';
->>>>>>> 6a7aa2eb7b38156581d158e6840bfb73d795037c
+import PriceAlertTracker from './pages/PriceAlertTracker';
 function App() {
   const [backendStatus, setBackendStatus] = useState("Checking backend...");
   const [dbStatus, setDbStatus] = useState("");
@@ -77,6 +73,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/destinations/:name" element={<DestinationPage />} />
+            <Route path="/pricealerttracker" element={<PriceAlertTracker />} />
 
           </Routes>
         </main>
