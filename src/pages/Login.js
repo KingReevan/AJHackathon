@@ -90,7 +90,7 @@ const Login = () => {
           </Avatar>
         </Box>
         <Typography variant="h5" align="center" gutterBottom>
-          Sign In
+          Log In
         </Typography>
         <form onSubmit={handleSubmit}>
           <TextField
