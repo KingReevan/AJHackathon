@@ -16,11 +16,11 @@
 
 /* Add this to ensure content pushes footer down */
 .main-content {
-  flex: 1;
-  padding: 0px;
-  max-width: 1200px;
-  margin: 0 auto;
+  flex-grow: 1;
   width: 100%;
+  padding: 0;
+  margin: 0;
+  height: calc(100% - 80px);
 }
 
 .status-container {
@@ -57,4 +57,18 @@
 .status-tip {
   font-size: 0.9rem;
   color: #666;
+}
+
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
 }
