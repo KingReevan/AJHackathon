@@ -1,19 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Button from '../components/Button';
-import './Planner.css';
+import {
+  Box,
+  Paper,
+  Typography,
+  TextField,
+  Button,
+  IconButton,
+  Grid,
+} from '@mui/material';
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 
 const Planner = () => {
-  const [tripTitle, setTripTitle] = useState("");
-  const [destination, setDestination] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [dailyPlans, setDailyPlans] = useState([{ day: 1, activity: "", budget: "" }]);
+  const [tripTitle, setTripTitle] = useState('');
+  const [destination, setDestination] = useState('');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [dailyPlans, setDailyPlans] = useState([{ day: 1, activity: '', budget: '' }]);
   const [totalBudget, setTotalBudget] = useState(0);
   const [travelers, setTravelers] = useState(1);
   const navigate = useNavigate();
 
-  // Calculate total budget whenever daily plans change
   useEffect(() => {
     const calculatedTotal = dailyPlans.reduce((sum, day) => {
       return sum + (Number(day.budget) || 0);
@@ -28,11 +35,7 @@ const Planner = () => {
   };
 
   const addDay = () => {
-    setDailyPlans([...dailyPlans, { 
-      day: dailyPlans.length + 1, 
-      activity: "", 
-      budget: "" 
-    }]);
+    setDailyPlans([...dailyPlans, { day: dailyPlans.length + 1, activity: '', budget: '' }]);
   };
 
   const removeDay = (index) => {
@@ -45,7 +48,6 @@ const Planner = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // In a real app, you would save to your backend here
     const tripData = {
       tripTitle,
       destination,
@@ -53,10 +55,10 @@ const Planner = () => {
       endDate,
       dailyPlans,
       totalBudget,
-      travelers
+      travelers,
     };
-    console.log("Trip data:", tripData);
-    alert("Your trip plan has been saved!");
+    console.log('Trip data:', tripData);
+    alert('Your trip plan has been saved!');
     navigate('/');
   };
 
@@ -69,132 +71,220 @@ const Planner = () => {
   };
 
   return (
-    <div className="planner-container">
-      <div className="planner-header">
-        <h1>Plan Your Perfect Trip</h1>
-        <p>Organize your itinerary and budget all in one place</p>
-      </div>
+    <Box
+      sx={{
+        minHeight: '100vh',
+        backgroundImage: `url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2674&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        position: 'relative',
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(0, 0, 0, 0.4)', // dark overlay
+          zIndex: 1,
+        },
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        padding: 4,
+        pt: 8,
+      }}
+    >
+      <Paper
+        elevation={6}
+        sx={{
+          position: 'relative',
+          zIndex: 2,
+          p: 4,
+          maxWidth: 800,
+          width: '100%',
+          bgcolor: 'rgba(255,255,255,0.9)',
+          borderRadius: 2,
+          overflowY: 'auto',
+          maxHeight: '90vh',
+        }}
+      >
+        <Typography variant="h4" align="center" gutterBottom sx={{ color: '#ef6812' }}>
+          Plan Your Perfect Trip
+        </Typography>
+        <Typography variant="subtitle1" align="center" gutterBottom>
+          Organize your itinerary and budget all in one place
+        </Typography>
 
-      <form onSubmit={handleSubmit} className="planner-form">
-        <div className="form-section">
-          <h2>Trip Details</h2>
-          <div className="form-group">
-            <label>Trip Title</label>
-            <input
-              type="text"
-              value={tripTitle}
-              onChange={(e) => setTripTitle(e.target.value)}
-              placeholder="e.g., European Adventure 2023"
-              required
-            />
-          </div>
+        <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          {/* Trip Details */}
+          <Typography variant="h6" gutterBottom sx={{ color: '#ef6812' }}>
+            Trip Details
+          </Typography>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                label="Trip Title"
+                variant="outlined"
+                fullWidth
+                required
+                value={tripTitle}
+                onChange={(e) => setTripTitle(e.target.value)}
+                placeholder="e.g., European Adventure 2023"
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                label="Destination"
+                variant="outlined"
+                fullWidth
+                required
+                value={destination}
+                onChange={(e) => setDestination(e.target.value)}
+                placeholder="Where are you going?"
+              />
+            </Grid>
 
-          <div className="form-group">
-            <label>Destination</label>
-            <input
-              type="text"
-              value={destination}
-              onChange={(e) => setDestination(e.target.value)}
-              placeholder="Where are you going?"
-              required
-            />
-          </div>
-
-          <div className="date-group">
-            <div className="form-group">
-              <label>Start Date</label>
-              <input
+            <Grid item xs={12} sm={4}>
+              <TextField
+                label="Start Date"
                 type="date"
+                fullWidth
+                required
+                InputLabelProps={{ shrink: true }}
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
-                required
               />
-            </div>
-
-            <div className="form-group">
-              <label>End Date</label>
-              <input
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <TextField
+                label="End Date"
                 type="date"
+                fullWidth
+                required
+                InputLabelProps={{ shrink: true }}
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
-                min={startDate}
-                required
+                inputProps={{ min: startDate }}
               />
-            </div>
-
-            <div className="form-group">
-              <label>Travelers</label>
-              <input
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <TextField
+                label="Travelers"
                 type="number"
+                fullWidth
+                required
+                inputProps={{ min: 1 }}
                 value={travelers}
                 onChange={(e) => setTravelers(e.target.value)}
-                min="1"
-                required
               />
-            </div>
-          </div>
+            </Grid>
+          </Grid>
 
           {startDate && endDate && (
-            <div className="trip-summary">
-              <p><strong>Trip Duration:</strong> {calculateDuration()} days</p>
-              <p><strong>Total Estimated Budget:</strong> ${totalBudget.toLocaleString()}</p>
-              <p><strong>Per Traveler:</strong> ${(totalBudget / travelers).toLocaleString()}</p>
-            </div>
+            <Box sx={{ mt: 2 }}>
+              <Typography>
+                <strong>Trip Duration:</strong> {calculateDuration()} days
+              </Typography>
+              <Typography>
+                <strong>Total Estimated Budget:</strong> ${totalBudget.toLocaleString()}
+              </Typography>
+              <Typography>
+                <strong>Per Traveler:</strong> ${(totalBudget / travelers).toLocaleString()}
+              </Typography>
+            </Box>
           )}
-        </div>
 
-        <div className="form-section">
-          <h2>Daily Itinerary</h2>
+          {/* Daily Itinerary */}
+          <Typography variant="h6" gutterBottom sx={{ mt: 4, color: '#ef6812' }}>
+            Daily Itinerary
+          </Typography>
+
           {dailyPlans.map((plan, index) => (
-            <div key={index} className="day-plan">
-              <div className="day-header">
-                <h3>Day {plan.day}</h3>
+            <Paper
+              key={index}
+              variant="outlined"
+              sx={{
+                p: 2,
+                mb: 2,
+                position: 'relative',
+                backgroundColor: '#fff',
+              }}
+            >
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  mb: 1,
+                }}
+              >
+                <Typography variant="subtitle1">Day {plan.day}</Typography>
                 {dailyPlans.length > 1 && (
-                  <button 
-                    type="button" 
+                  <IconButton
+                    aria-label="remove day"
+                    color="error"
                     onClick={() => removeDay(index)}
-                    className="remove-day"
                   >
-                    Remove
-                  </button>
+                    <RemoveCircleOutlineIcon />
+                  </IconButton>
                 )}
-              </div>
+              </Box>
 
-              <div className="form-group">
-                <label>Activity</label>
-                <input
-                  type="text"
-                  placeholder="What will you do today?"
-                  value={plan.activity}
-                  onChange={(e) => handlePlanChange(index, 'activity', e.target.value)}
-                />
-              </div>
-
-              <div className="form-group">
-                <label>Estimated Budget ($)</label>
-                <input
-                  type="number"
-                  placeholder="500"
-                  value={plan.budget}
-                  onChange={(e) => handlePlanChange(index, 'budget', e.target.value)}
-                  min="0"
-                />
-              </div>
-            </div>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={8}>
+                  <TextField
+                    label="Activity"
+                    fullWidth
+                    placeholder="What will you do today?"
+                    value={plan.activity}
+                    onChange={(e) => handlePlanChange(index, 'activity', e.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                  <TextField
+                    label="Estimated Budget ($)"
+                    type="number"
+                    fullWidth
+                    placeholder="500"
+                    inputProps={{ min: 0 }}
+                    value={plan.budget}
+                    onChange={(e) => handlePlanChange(index, 'budget', e.target.value)}
+                  />
+                </Grid>
+              </Grid>
+            </Paper>
           ))}
 
-          <Button type="button" onClick={addDay} className="add-day-btn">
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: '#ef6812',
+              '&:hover': { backgroundColor: '#d75e0f' },
+              mb: 3,
+            }}
+            onClick={addDay}
+          >
             + Add Another Day
           </Button>
-        </div>
 
-        <div className="form-actions">
-          <Button type="submit" className="save-plan-btn">
-            Save Trip Plan
-          </Button>
-        </div>
-      </form>
-    </div>
+          <Box textAlign="center">
+            <Button
+              type="submit"
+              variant="contained"
+              sx={{
+                backgroundColor: '#ef6812',
+                color: '#fff',
+                '&:hover': { backgroundColor: '#d75e0f' },
+                minWidth: 200,
+              }}
+            >
+              Save Trip Plan
+            </Button>
+          </Box>
+        </Box>
+      </Paper>
+    </Box>
   );
 };
 
