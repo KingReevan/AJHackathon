@@ -17,7 +17,7 @@ const Hero = () => {
     <section className="hero">
       <div className="hero-content">
         <h1 className="hero-title">The Travel Tribe</h1>
-        <p className="hero-tagline">Discover. Plan. Explore. Together.</p>
+        <p className="hero-tagline">One tribe. Infinite adventures.</p>
         
         <form onSubmit={handleSubmit} className="hero-cta">
           <input 
