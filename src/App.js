@@ -13,7 +13,7 @@ import Planner from './pages/Planner';
 import AboutUs from './pages/About';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-
+import DestinationPage from './pages/DestinationPage';
 function App() {
   const [backendStatus, setBackendStatus] = useState("Checking backend...");
   const [dbStatus, setDbStatus] = useState("");
@@ -71,6 +71,8 @@ function App() {
             <Route path="/aboutus" element={<AboutUs />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/destinations/:name" element={<DestinationPage />} />
+
           </Routes>
         </main>
         
