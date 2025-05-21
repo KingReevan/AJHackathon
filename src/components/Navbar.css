@@ -84,3 +84,50 @@
 .nav-login {
   margin-left: auto;
 }
+
+.logo-img {
+  height: 100px; /* adjust as needed */
+  width: auto;
+  object-fit: contain;
+}
+
+/* Auth Button Group */
+.nav-auth-buttons {
+  display: flex;
+  gap: 12px;
+  margin-left: auto;
+  align-items: center;
+}
+
+/* Button Base */
+.btn {
+  padding: 8px 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s ease;
+  border: none;
+}
+
+/* Login Button */
+.login-btn {
+  background-color: transparent;
+  color: #fff;
+  border: 2px solid #4b59f7;
+}
+
+.login-btn:hover {
+  background-color: #4b59f7;
+  color: white;
+}
+
+/* Sign Up Button */
+.signup-btn {
+  background-color: #4b59f7;
+  color: white;
+}
+
+.signup-btn:hover {
+  background-color: #3a47c3;
+  transform: translateY(-2px);
+}

@@ -1,12 +1,12 @@
 import React from 'react';
-import Button from '../components/Button';
+import Hero from '../components/Hero';
 
 const Home = () => {
   return (
-    <div>
-      <h1>Welcome to the Home Page</h1>
-      <p>This is the main content of your home page.</p>
-    </div>
+    <>
+      <Hero />
+      {/* We'll add other sections here later */}
+    </>
   );
 };
 

@@ -81,45 +81,11 @@ function App() {
     <Router>
       <div className="app-container">
         <Navbar />
-        
-        <div className="status-container">
-          <h1>Backend Status</h1>
-          {error ? (
-            <div className="status-error">
-              <p>❌ Error: {error}</p>
-              <p>Make sure your backend server is running on port 5000</p>
-            </div>
-          ) : (
-            <>
-              <div className={`status-indicator ${error ? 'error' : 'success'}`}>
-                <p>Backend: {backendStatus}</p>
-                <p>Database: {dbStatus}</p>
-              </div>
-              <p className="status-tip">
-                {!error && "✅ Frontend is successfully communicating with backend"}
-              </p>
-            </>
-          )}
-        </div>
 
         <main className="main-content">
           <Routes>
-            <Route path="/" element={
-              <>
-                <Home />
-                <div className="card-grid">
-                  {cards.map((card, index) => (
-                    <Card
-                      key={index}
-                      imageUrl={card.imageUrl}
-                      title={card.title}
-                      description={card.description}
-                    />
-                  ))}
-                </div>
-              </>
-            } />
-            <Route path="/destination" element={<Destination />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/destinations" element={<Destination />} />
             <Route path="/planner" element={<Planner />} />
             <Route path="/aboutus" element={<AboutUs />} />
             <Route path="/login" element={<Login />} />

@@ -1,15 +1,15 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom'; // For navigation (install if needed)
-import './Navbar.css'; // We'll create this for styling
+import { NavLink } from 'react-router-dom';
+import './Navbar.css';
 
 const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-container">
         <NavLink to="/" className="nav-logo">
-          MyApp
+          <img src="/logo.png" alt="Travel Tribe Logo" className="logo-img" />
         </NavLink>
-        
+
         <ul className="nav-menu">
           <div className="nav-center-group">
             <li className="nav-item">
@@ -18,7 +18,7 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="/destination" className="nav-link">
+              <NavLink to="/destinations" className="nav-link">
                 Destination
               </NavLink>
             </li>
@@ -33,11 +33,15 @@ const Navbar = () => {
               </NavLink>
             </li>
           </div>
-          <li className="nav-item nav-login">
-            <NavLink to="/login" className="nav-link">
+
+          <div className="nav-auth-buttons">
+            <NavLink to="/login" className="btn login-btn">
               Login
             </NavLink>
-          </li>
+            <NavLink to="/signup" className="btn signup-btn">
+              Sign Up
+            </NavLink>
+          </div>
         </ul>
       </div>
     </nav>
