@@ -57,7 +57,7 @@ const AboutUs = () => {
     {
       name: 'Reevan Dmello',
       role: 'MD',
-      photo: 'https://media.licdn.com/dms/image/v2/D5603AQH0z5Q9BIEfAA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1729705189344?e=2147483647&v=beta&t=gC_u4mXXAOMH78W2qolABZRBAqYlTRJqCaROO5m3xp0',
+      photo: 'https://s.france24.com/media/display/451ed2b8-eed6-11ea-afdd-005056bf87d6/w:1280/p:1x1/messi-1805.jpg',
       linkedin: 'https://in.linkedin.com/in/reevan-d-mello-14563725a',
       github: 'https://github.com/KingReevan',
       twitter: 'https://x.com/reevan_rego',
@@ -65,7 +65,7 @@ const AboutUs = () => {
     {
       name: 'Alston Mendonca',
       role: 'CEO',
-      photo: 'https://via.placeholder.com/100',
+      photo: 'https://www.tarshi.net/inplainspeak/wp-content/uploads/2019/10/IMG-20190923-WA0014.jpg',
       linkedin: 'https://www.linkedin.com/in/alstonmendonca/',
       github: 'https://github.com/alstonmendonca',
       twitter: 'https://x.com/reevan_rego',
@@ -73,12 +73,12 @@ const AboutUs = () => {
   ];
 
   const testimonials = [
-   { "quote": "The trip was flawlessly planned and exceeded all my expectations!", "author": "jenica", "company": "Hydrabad,India" },
-  { "quote": "Highly recommend their personalized approach and local expertise.", "author": "achillas", "company": "panjim,India" },
-  { "quote": "Amazing support from start to finish—made my vacation truly stress-free.", "author": "akhil", "company": "Mangaluru, India" },
-  { "quote": "Professional, timely, and always attentive to our needs.", "author": "allen", "company": "Pune, India" },
-  { "quote": "Exceptional attention to detail that brought our dream trip to life.", "author": "Tejas", "company": "bangaluru, India" },
-  { "quote": "Their commitment to responsible tourism made our journey meaningful.", "author": "shanika", "company": "mumbai, India" }
+   { "quote": "The trip was flawlessly planned and exceeded all my expectations!", "author": "Jenica", "company": "Hyderabad, India" },
+  { "quote": "Highly recommend their personalized approach and local expertise.", "author": "Achilles", "company": "Panjim, India" },
+  { "quote": "Amazing support from start to finish—made my vacation truly stress-free.", "author": "Akhil", "company": "Mangaluru, India" },
+  { "quote": "Professional, timely, and always attentive to our needs.", "author": "Allen", "company": "Pune, India" },
+  { "quote": "Exceptional attention to detail that brought our dream trip to life.", "author": "Tejas", "company": "Bengaluru, India" },
+  { "quote": "Their commitment to responsible tourism made our journey meaningful.", "author": "Shanika", "company": "Mumbai, India" }
   ];
 
   const faqs = [

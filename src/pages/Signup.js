@@ -15,7 +15,6 @@ import {
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import axios from 'axios';
 
-
 const Signup = () => {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -50,60 +49,74 @@ const Signup = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  if (!validateForm()) return;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!validateForm()) return;
 
-  setLoading(true);
-  try {
-    const res = await axios.post('http://localhost:5000/api/auth/signup', {
-      firstName: formData.firstName,
-      lastName: formData.lastName,
-      email: formData.email,
-      username: formData.email, // 👈 using email as username
-      password: formData.password,
-    });
+    setLoading(true);
+    try {
+      const res = await axios.post('http://localhost:5000/api/auth/signup', {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        username: formData.email, // 👈 using email as username
+        password: formData.password,
+      });
 
-    // Optionally save the token and user
-    if (res.data.token) {
-      localStorage.setItem('token', res.data.token);
-      localStorage.setItem('user', JSON.stringify(res.data.user));
+      if (res.data.token) {
+        localStorage.setItem('token', res.data.token);
+        localStorage.setItem('user', JSON.stringify(res.data.user));
+      }
+
+      alert('Signup successful!');
+      window.location.href = '/login';
+    } catch (error) {
+      if (error.response && error.response.data) {
+        const serverError = error.response.data.error;
+        alert(`Signup failed: ${serverError}`);
+      } else {
+        alert('Signup failed: Server error');
+      }
+    } finally {
+      setLoading(false);
     }
-
-    alert('Signup successful!');
-    // Redirect to dashboard or login page
-    window.location.href = '/login';
-  } catch (error) {
-    if (error.response && error.response.data) {
-      const serverError = error.response.data.error;
-      alert(`Signup failed: ${serverError}`);
-    } else {
-      alert('Signup failed: Server error');
-    }
-  } finally {
-    setLoading(false);
-  }
-};
-
+  };
 
   return (
     <Box
       sx={{
+        position: 'relative',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         minHeight: '100vh',
-        backgroundColor: '#f4f6f8',
+        backgroundImage: `url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2674&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          bgcolor: 'rgba(0, 0, 0, 0.4)',
+          zIndex: 1,
+        },
       }}
     >
       <Paper
         elevation={6}
         sx={{
+          position: 'relative',
           padding: 4,
           width: '100%',
           maxWidth: 800,
           borderRadius: 2,
           boxShadow: 3,
+          zIndex: 2,
+          backgroundColor: 'rgba(255, 255, 255, 0.9)', // Slightly transparent white bg for readability
         }}
       >
         <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: 2 }}>
