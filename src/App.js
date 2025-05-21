@@ -50,27 +50,7 @@ function App() {
 
   // Sample card data (can be fetched from an API later)
   const cards = [
-    {
-      imageUrl: "https://i.pinimg.com/736x/c0/76/aa/c076aa6d563f1499ed2793e6078a156a.jpg",
-      title: "Awesome Product",
-      description: "This is a great product with amazing features."
-    },
-    {
-      imageUrl: "https://wallpapers.com/images/hd/cool-rainbow-neon-streaks-vnjacac3u0ugxi89.jpg",
-      title: "Premium Service",
-      description: "Get the best service in town with our premium package."
-    },
-    {
-      imageUrl: "https://t3.ftcdn.net/jpg/01/05/16/08/360_F_105160882_L6I6OnRkT0NZjqtnEX4oqC5BcI3j6ZuH.jpg",
-      title: "Limited Edition",
-      description: "Hurry! Limited stock available for this exclusive item."
-    },
-    {
-      imageUrl: "https://m.media-amazon.com/images/I/815YTONG3jL._AC_UF1000,1000_QL80_.jpg",
-      title: "Alston Endorsed",
-      description: "Famous celebrities like Joywin and Alston endorse this product."
-    },
-    
+
   ];
 
   if (isLoading) {
@@ -84,7 +64,7 @@ function App() {
 
         <main className="main-content">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home cards={cards} />} />
             <Route path="/destinations" element={<Destination />} />
             <Route path="/planner" element={<Planner />} />
             <Route path="/aboutus" element={<AboutUs />} />
