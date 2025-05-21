@@ -1,6 +1,8 @@
 import React from 'react';
 import Hero from '../components/Hero';
 import Destinations from '../components/Destinations';
+import FAQ from '../components/FAQ';
+import Newsletter from '../components/Newsletter';
 
 const Home = () => {
   const destinations = [
@@ -40,6 +42,8 @@ const Home = () => {
     <>
       <Hero />
       <Destinations destinations={destinations} />
+      <FAQ /> 
+      <Newsletter />
     </>
   );
 };
